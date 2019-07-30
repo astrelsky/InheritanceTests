@@ -1,0 +1,7 @@
+/**/main*
+*.elf
+*.erl
+*.a
+*.exe
+*.dll
+*.o
