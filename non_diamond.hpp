@@ -8,7 +8,7 @@ using namespace std;
 namespace NonDiamond {
     class A {
         public:
-            ~A(){}
+            virtual ~A(){}
             virtual void a_foo() {}
             virtual void set_a_data(int data) { hidden_a_data = data; }
             virtual int get_a_data() { return hidden_a_data; }
@@ -16,7 +16,6 @@ namespace NonDiamond {
             friend ostream& operator<< (ostream& os, A& a){
                 os << "A size: " << sizeof(A) << endl;
                 os << "a.a_data: " << a.offset_of(a.a_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -27,7 +26,7 @@ namespace NonDiamond {
 
     class B : virtual public A {
         public:
-            ~B(){}
+            virtual ~B(){}
             virtual void b_foo() {}
             virtual void set_b_data(int data) { b_data = data; }
             virtual int get_b_data() { return b_data; }
@@ -35,7 +34,6 @@ namespace NonDiamond {
             friend ostream& operator<< (ostream& os, B& b){
                 os << "B size: " << sizeof(B) << endl;
                 os << "b.b_data: " << b.offset_of(b.b_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -44,7 +42,7 @@ namespace NonDiamond {
 
     class C : public A {
         public:
-            ~C(){}
+            virtual ~C(){}
             virtual void c_foo() {}
             virtual void set_c_data(int data) { c_data = data; }
             virtual int get_c_data() { return c_data; }
@@ -54,7 +52,6 @@ namespace NonDiamond {
                 os << "C.c_data: " << c.offset_of(c.c_data) << endl;
                 os << "super_A: " << offset_of_base<A, C>(c) << endl;
                 os << "C.a_data: " << c.offset_of(c.a_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -63,7 +60,7 @@ namespace NonDiamond {
 
     class D : public B, public C {
         public:
-            ~D(){}
+            virtual ~D(){}
             virtual void d_foo() {}
             virtual void set_d_data(int data) { d_data = data; }
             virtual int get_d_data() { return d_data; }
@@ -71,7 +68,7 @@ namespace NonDiamond {
             friend ostream& operator<< (ostream& os, D& d){
                 os << "D size: " << sizeof(D) << endl;
                 os << "d.d_data: " << d.offset_of(d.d_data) << endl;
-                os << "super_B size: " << sizeof(D::B) << endl;
+                os << "super_B size: " << sizeof(D::B)-sizeof(B::A) << endl;
                 os << "super_B: " << offset_of_base<B, D>(d) << endl;
                 os << "d.b_data: " << d.offset_of(d.b_data) << endl;
                 os << "super_B::A: " << offset_of_base<A, D::B>(d) << endl;
@@ -79,9 +76,8 @@ namespace NonDiamond {
                 os << "super_C size: " << sizeof(D::C) << endl;
                 os << "super_C: " << offset_of_base<C, D>(d) << endl;
                 os << "d.c_data: " << d.offset_of(d.c_data) << endl;
-                os << "super_C::A: " << offset_of_base<A, D::C>(d) << endl;
+                os << "super_C::A: " << offset_of_base<C, D>(d) + offset_of_base<A, D::C>(d) << endl;
                 os << "super_C.a_data: " << d.offset_of(((C *) &d)->a_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -92,5 +88,26 @@ namespace NonDiamond {
     static B b = B();
     static C c = C();
     static D d = D();
+
+    void printTitle() {
+        string name = " NonDiamond ";
+        int len = (SEPARATOR.length() - (name.length())) / 2;
+        string block = string(len, '-');
+        string title = block+name+block;
+        if (title.length() < SEPARATOR.length()) {
+            title += string(SEPARATOR.length() - title.length(), '-');
+        }
+        cout << SEPARATOR << endl;
+        cout << title << endl;
+        cout << SEPARATOR << endl;
+    }
+
+    void print() {
+        printTitle();
+        cout << a << endl;
+        cout << b << endl;
+        cout << c << endl;
+        cout << d;
+    }
 }
 #endif // __NON_DIAMOND__

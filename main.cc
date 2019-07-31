@@ -7,30 +7,12 @@
 using namespace std;
 
 int main() {
-    cout << Diamond::a;
-    cout << Diamond::b;
-    cout << Diamond::c;
-    cout << Diamond::d;
-    cout << "------------------------------------------" << endl;
-    cout << NonDiamond::a;
-    cout << NonDiamond::b;
-    cout << NonDiamond::c;
-    cout << NonDiamond::d;
-    cout << "------------------------------------------" << endl;
-    cout << LargeInheritance::a;
-    cout << LargeInheritance::b;
-    cout << LargeInheritance::c;
-    cout << LargeInheritance::d;
-    cout << LargeInheritance::u;
-    cout << LargeInheritance::v;
-    cout << LargeInheritance::w;
-    cout << LargeInheritance::x;
-    cout << LargeInheritance::y;
-    cout << LargeInheritance::z;
-    cout << "------------------------------------------" << endl;
-    cout << AbstractInheritance::g;
-    cout << "------------------------------------------" << endl;
-    cout << AbstractInheritance::h;
-    cout << "------------------------------------------" << endl;
-    cout << AbstractInheritance::i;
+    Diamond::print();
+    NonDiamond::print();
+    LargeInheritance::print();
+    AbstractInheritance::print();
+#ifdef _EE
+    for(;;);
+#endif
+    return 0;
 }

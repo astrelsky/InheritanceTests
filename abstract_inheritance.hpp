@@ -8,9 +8,11 @@ using namespace std;
 namespace AbstractInheritance {
 
     class F {
-        public:
+        protected:
             F(int dataValue) : f_data(dataValue) {}
-            ~F(){}
+            F(){}
+            virtual ~F(){}
+        public:
             virtual void f_foo() {}
             virtual string getName() = 0;
             virtual int getData() { return f_data; }
@@ -30,7 +32,7 @@ namespace AbstractInheritance {
     class G : virtual public F {
         public:
             G(int dataValue) : F(dataValue) {}
-            ~G(){}
+            virtual ~G(){}
             virtual void g_foo() {}
             virtual string getParentName() { return "G & "+ F::getParentName(); }
             virtual string getName() { return "G"; }
@@ -50,7 +52,7 @@ namespace AbstractInheritance {
     class H : public F {
         public:
             H(int dataValue) : F(dataValue) {}
-            ~H(){}
+            virtual ~H(){}
             virtual void h_foo() {}
             virtual string getParentName() { return "H & "+ F::getParentName(); }
             virtual string getName() { return "H"; }
@@ -69,8 +71,8 @@ namespace AbstractInheritance {
 
     class I : public G, public H {
         public:
-            I(int dataValue) : F(dataValue), G(dataValue), H(dataValue) {}
-            ~I(){}
+            I(int dataValue) : G(dataValue), H(dataValue) {}
+            virtual ~I(){}
             virtual void i_foo() {}
             virtual size_t getSize() { return sizeof(I); }
             virtual string getName() { return "I"; }
@@ -86,7 +88,6 @@ namespace AbstractInheritance {
                 os << "i.g_data: " << i.offset_of(i.g_data) << endl;
                 os << "super_H: " << offset_of_base<H, I>(i) << endl;
                 os << "i.h_data: " << i.offset_of(i.h_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -96,6 +97,26 @@ namespace AbstractInheritance {
     static G g = G(1);
     static H h = H(2);
     static I i = I(3);
+
+    void printTitle() {
+        string name = " AbstractInheritance ";
+        int len = (SEPARATOR.length() - (name.length())) / 2;
+        string block = string(len, '-');
+        string title = block+name+block;
+        if (title.length() < SEPARATOR.length()) {
+            title += string(SEPARATOR.length() - title.length(), '-');
+        }
+        cout << SEPARATOR << endl;
+        cout << title << endl;
+        cout << SEPARATOR << endl;
+    }
+
+    void print() {
+        printTitle();
+        cout << g << endl;
+        cout << h << endl;
+        cout << i;
+    }
 
 }
 

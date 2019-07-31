@@ -8,7 +8,7 @@ using namespace std;
 namespace LargeInheritance {
     class A {
         public:
-            ~A(){}
+            virtual ~A(){}
             virtual void a_foo() {}
             virtual void set_a_data(int data) { hidden_a_data = data; }
             virtual int get_a_data() { return hidden_a_data; }
@@ -16,7 +16,6 @@ namespace LargeInheritance {
             friend ostream& operator<< (ostream& os, A& a){
                 os << "A size: " << sizeof(A) << endl;
                 os << "a.a_data: " << a.offset_of(a.a_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -27,7 +26,7 @@ namespace LargeInheritance {
 
     class B : virtual public A {
         public:
-            ~B(){}
+            virtual ~B(){}
             virtual void b_foo() {}
             virtual void set_b_data(int data) { b_data = data; }
             virtual int get_b_data() { return b_data; }
@@ -37,7 +36,6 @@ namespace LargeInheritance {
                 os << "b.b_data: " << b.offset_of(b.b_data) << endl;
                 os << "super_A: " << offset_of_base<A, B>(b) << endl;
                 os << "b.a_data: " << b.offset_of(b.a_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -46,7 +44,7 @@ namespace LargeInheritance {
 
     class C : virtual public A {
         public:
-            ~C(){}
+            virtual ~C(){}
             virtual void c_foo() {}
             virtual void set_c_data(int data) { c_data = data; }
             virtual int get_c_data() { return c_data; }
@@ -56,7 +54,6 @@ namespace LargeInheritance {
                 os << "C.c_data: " << c.offset_of(c.c_data) << endl;
                 os << "super_A: " << offset_of_base<A, C>(c) << endl;
                 os << "C.a_data: " << c.offset_of(c.a_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -65,7 +62,7 @@ namespace LargeInheritance {
 
     class D : public B, public C {
         public:
-            ~D(){}
+            virtual ~D(){}
             virtual void d_foo() {}
             virtual void set_d_data(int data) { d_data = data; }
             virtual int get_d_data() { return d_data; }
@@ -80,7 +77,6 @@ namespace LargeInheritance {
                 os << "super_C: " << offset_of_base<C, D>(d) << endl;
                 os << "d.c_data: " << d.offset_of(d.c_data) << endl;
                 os << "d.d_data: " << d.offset_of(d.d_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -89,7 +85,7 @@ namespace LargeInheritance {
 
     class Z {
         public:
-            ~Z(){}
+            virtual ~Z(){}
             virtual void z_foo() {}
             virtual void set_z_data(int data) { z_data = data; }
             virtual int get_z_data() { return z_data; }
@@ -97,7 +93,6 @@ namespace LargeInheritance {
             friend ostream& operator<< (ostream& os, Z& z){
                 os << "Z size: " << sizeof(Z) << endl;
                 os << "z.z_data: " << z.offset_of(z.z_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -106,7 +101,7 @@ namespace LargeInheritance {
 
     class U {
         public:
-            ~U(){}
+            virtual ~U(){}
             virtual void y_foo() {}
             virtual void set_y_data(int data) { y_data = data; }
             virtual int get_y_data() { return y_data; }
@@ -114,7 +109,6 @@ namespace LargeInheritance {
             friend ostream& operator<< (ostream& os, U& y){
                 os << "U size: " << sizeof(U) << endl;
                 os << "y.y_data: " << y.offset_of(y.y_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -123,7 +117,7 @@ namespace LargeInheritance {
 
     class Y : virtual public U {
         public:
-            ~Y(){}
+            virtual ~Y(){}
             virtual void y_foo() {}
             virtual void set_y_data(int data) { y_data = data; }
             virtual int get_y_data() { return y_data; }
@@ -133,7 +127,6 @@ namespace LargeInheritance {
                 os << "y.y_data: " << y.offset_of(y.y_data) << endl;
                 os << "super_U: " << offset_of_base<U, Y>(y) << endl;
                 os << "y.y_data: " << y.offset_of(y.y_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -142,7 +135,7 @@ namespace LargeInheritance {
 
     class X {
         public:
-            ~X(){}
+            virtual ~X(){}
             virtual void x_foo() {}
             virtual void set_x_data(int data) { x_data = data; }
             virtual int get_x_data() { return x_data; }
@@ -150,7 +143,6 @@ namespace LargeInheritance {
             friend ostream& operator<< (ostream& os, X& x){
                 os << "X size: " << sizeof(X) << endl;
                 os << "x.x_data: " << x.offset_of(x.x_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -159,7 +151,7 @@ namespace LargeInheritance {
 
     class W : virtual public B, public Y, virtual public C, public Z, public X {
         public:
-            ~W(){}
+            virtual ~W(){}
             virtual void w_foo() {}
             virtual void z_foo() {}
             virtual void set_w_data(int data) { w_data = data; }
@@ -182,7 +174,6 @@ namespace LargeInheritance {
                 os << "w.x_data: " << w.offset_of(w.x_data) << endl;
                 os << "super_U: " << offset_of_base<U, W>(w) << endl;
                 os << "w.y_data: " << w.offset_of(w.y_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -191,7 +182,7 @@ namespace LargeInheritance {
 
     class V : public Z, public Y, public X, public A {
         public:
-            ~V(){}
+            virtual ~V(){}
             virtual void v_foo() {}
             virtual void z_foo() {}
             virtual void y_foo() {}
@@ -211,7 +202,6 @@ namespace LargeInheritance {
                 os << "v.x_data: " << v.offset_of(v.x_data) << endl;
                 os << "super_A: " << offset_of_base<A, V>(v) << endl;
                 os << "v.a_data: " << v.offset_of(v.a_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -228,6 +218,33 @@ namespace LargeInheritance {
     static X x = X();
     static Y y = Y();
     static Z z = Z();
+
+    void printTitle() {
+        string name = " LargeInheritance ";
+        int len = (SEPARATOR.length() - (name.length())) / 2;
+        string block = string(len, '-');
+        string title = block+name+block;
+        if (title.length() < SEPARATOR.length()) {
+            title += string(SEPARATOR.length() - title.length(), '-');
+        }
+        cout << SEPARATOR << endl;
+        cout << title << endl;
+        cout << SEPARATOR << endl;
+    }
+
+    void print() {
+        printTitle();
+        cout << a << endl;
+        cout << b << endl;
+        cout << c << endl;
+        cout << d << endl;
+        cout << u << endl;
+        cout << v << endl;
+        cout << w << endl;
+        cout << x << endl;
+        cout << y << endl;
+        cout << z;
+    }
 }
 
 #endif // __LARGE_INHERITANCE__
