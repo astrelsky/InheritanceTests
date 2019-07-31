@@ -1,8 +1,7 @@
 EE_OBJS = main.o
 EE_BIN  = main.elf
 STRIPPED  = main_stripped.elf
-EE_CXXFLAGS = -Wall -gdwarf-2 -g3
-
+EE_CXXFLAGS = -gdwarf-2 -g3
 
 all: $(STRIPPED)
 

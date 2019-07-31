@@ -8,7 +8,7 @@ using namespace std;
 namespace Diamond {
     class A {
         public:
-            ~A(){}
+            virtual ~A(){}
             virtual void a_foo() {}
             virtual void set_a_data(int data) { hidden_a_data = data; }
             virtual int get_a_data() { return hidden_a_data; }
@@ -16,7 +16,6 @@ namespace Diamond {
             friend ostream& operator<< (ostream& os, A& a){
                 os << "A size: " << sizeof(A) << endl;
                 os << "a.a_data: " << a.offset_of(a.a_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -27,7 +26,7 @@ namespace Diamond {
 
     class B : virtual public A {
         public:
-            ~B(){}
+            virtual ~B(){}
             virtual void b_foo() {}
             virtual void set_b_data(int data) { b_data = data; }
             virtual int get_b_data() { return b_data; }
@@ -37,7 +36,6 @@ namespace Diamond {
                 os << "b.b_data: " << b.offset_of(b.b_data) << endl;
                 os << "super_A: " << offset_of_base<A, B>(b) << endl;
                 os << "b.a_data: " << b.offset_of(b.a_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -46,7 +44,7 @@ namespace Diamond {
 
     class C : virtual public A {
         public:
-            ~C(){}
+            virtual ~C(){}
             virtual void c_foo() {}
             virtual void set_c_data(int data) { c_data = data; }
             virtual int get_c_data() { return c_data; }
@@ -56,7 +54,6 @@ namespace Diamond {
                 os << "c.c_data: " << c.offset_of(c.c_data) << endl;
                 os << "super_A: " << offset_of_base<A, C>(c) << endl;
                 os << "c.a_data: " << c.offset_of(c.a_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -65,7 +62,7 @@ namespace Diamond {
 
     class D : public B, public C {
         public:
-            ~D(){}
+            virtual ~D(){}
             virtual void d_foo() {}
             virtual void set_d_data(int data) { d_data = data; }
             virtual int get_d_data() { return d_data; }
@@ -77,7 +74,6 @@ namespace Diamond {
                 os << "d.b_data: " << d.offset_of(d.b_data) << endl;
                 os << "super_C: " << offset_of_base<C, D>(d) << endl;
                 os << "d.c_data: " << d.offset_of(d.c_data) << endl;
-                os << "------------------------------------------" << endl;
                 return os;
             }
 
@@ -88,6 +84,27 @@ namespace Diamond {
     static B b = B();
     static C c = C();
     static D d = D();
+
+    void printTitle() {
+        string name = " Diamond ";
+        int len = (SEPARATOR.length() - (name.length())) / 2;
+        string block = string(len, '-');
+        string title = block+name+block;
+        if (title.length() < SEPARATOR.length()) {
+            title += string(SEPARATOR.length() - title.length(), '-');
+        }
+        cout << SEPARATOR << endl;
+        cout << title << endl;
+        cout << SEPARATOR << endl;
+    }
+
+    void print() {
+        printTitle();
+        cout << a << endl;
+        cout << b << endl;
+        cout << c << endl;
+        cout << d;
+    }
 }
 
 #endif // __DIAMOND__
