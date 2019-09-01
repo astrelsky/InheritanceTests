@@ -98,21 +98,8 @@ namespace AbstractInheritance {
     static H h = H(2);
     static I i = I(3);
 
-    void printTitle() {
-        string name = " AbstractInheritance ";
-        int len = (SEPARATOR.length() - (name.length())) / 2;
-        string block = string(len, '-');
-        string title = block+name+block;
-        if (title.length() < SEPARATOR.length()) {
-            title += string(SEPARATOR.length() - title.length(), '-');
-        }
-        cout << SEPARATOR << endl;
-        cout << title << endl;
-        cout << SEPARATOR << endl;
-    }
-
     void print() {
-        printTitle();
+        printTitle(" AbstractInheritance ");
         cout << g << endl;
         cout << h << endl;
         cout << i;

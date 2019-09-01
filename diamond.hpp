@@ -72,6 +72,8 @@ namespace Diamond {
                 os << "d.d_data: " << d.offset_of(d.d_data) << endl;
                 os << "super_B: " << offset_of_base<B, D>(d) << endl;
                 os << "d.b_data: " << d.offset_of(d.b_data) << endl;
+                os << "super_A: " << offset_of_base<A, D>(d) << endl;
+                os << "d.a_data: " << d.offset_of(d.a_data) << endl;
                 os << "super_C: " << offset_of_base<C, D>(d) << endl;
                 os << "d.c_data: " << d.offset_of(d.c_data) << endl;
                 return os;
@@ -85,21 +87,8 @@ namespace Diamond {
     static C c = C();
     static D d = D();
 
-    void printTitle() {
-        string name = " Diamond ";
-        int len = (SEPARATOR.length() - (name.length())) / 2;
-        string block = string(len, '-');
-        string title = block+name+block;
-        if (title.length() < SEPARATOR.length()) {
-            title += string(SEPARATOR.length() - title.length(), '-');
-        }
-        cout << SEPARATOR << endl;
-        cout << title << endl;
-        cout << SEPARATOR << endl;
-    }
-
     void print() {
-        printTitle();
+        printTitle(" Diamond ");
         cout << a << endl;
         cout << b << endl;
         cout << c << endl;

@@ -89,21 +89,8 @@ namespace NonDiamond {
     static C c = C();
     static D d = D();
 
-    void printTitle() {
-        string name = " NonDiamond ";
-        int len = (SEPARATOR.length() - (name.length())) / 2;
-        string block = string(len, '-');
-        string title = block+name+block;
-        if (title.length() < SEPARATOR.length()) {
-            title += string(SEPARATOR.length() - title.length(), '-');
-        }
-        cout << SEPARATOR << endl;
-        cout << title << endl;
-        cout << SEPARATOR << endl;
-    }
-
     void print() {
-        printTitle();
+        printTitle(" NonDiamond ");
         cout << a << endl;
         cout << b << endl;
         cout << c << endl;
