@@ -4,6 +4,8 @@
 #include "non_diamond.hpp"
 #include "large_inheritance.hpp"
 #include "abstract_inheritance.hpp"
+#include "fundamental_types.hpp"
+#include "no_virtual_functions.hpp"
 using namespace std;
 
 int main() {
@@ -11,6 +13,8 @@ int main() {
     NonDiamond::print();
     LargeInheritance::print();
     AbstractInheritance::print();
+    NoVirtualFunctions::print();
+    FundamentalTypes::print();
 #ifdef _EE
     for(;;);
 #endif
