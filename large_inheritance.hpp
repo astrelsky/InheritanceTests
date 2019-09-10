@@ -149,7 +149,7 @@ namespace LargeInheritance {
             int x_data;
     };
 
-    class W : virtual public B, public Y, virtual public C, public Z, public X {
+    class W : virtual public B, virtual public A, public Y, virtual public C, public Z, public X {
         public:
             virtual ~W(){}
             virtual void w_foo() {}
