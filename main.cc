@@ -6,6 +6,7 @@
 #include "abstract_inheritance.hpp"
 #include "fundamental_types.hpp"
 #include "no_virtual_functions.hpp"
+#include "no_members.hpp"
 using namespace std;
 
 int main() {
@@ -15,6 +16,7 @@ int main() {
     AbstractInheritance::print();
     NoVirtualFunctions::print();
     FundamentalTypes::print();
+    NoMembers::print();
 #ifdef _EE
     for(;;);
 #endif
