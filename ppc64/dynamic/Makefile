@@ -9,6 +9,8 @@ STRIP = $(addprefix $(PREFIX),strip)
 
 all: $(STRIPPED)
 
+remake: clean all
+
 $(OBJECTS): ../../main.cc
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 

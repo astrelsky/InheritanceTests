@@ -1,9 +1,9 @@
-PREFIX = mips64-linux-gnuabi64-
+PREFIX = mips64el-linux-gnuabi64-
 OBJECTS = main.o
 EXEC  = main 
 STRIPPED  = main_stripped
 CXXFLAGS = -Wall -fvar-tracking-assignments -static -gdwarf-3 -g3
-CXX = $(addprefix $(PREFIX),g++)
+CXX = $(addprefix $(PREFIX),g++-8)
 STRIP = $(addprefix $(PREFIX),strip)
 
 

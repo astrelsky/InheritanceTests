@@ -2,8 +2,8 @@
 OBJECTS = main.o
 EXEC  = main 
 STRIPPED  = main_stripped
-CXXFLAGS = -Wall -fvar-tracking-assignments -static -gdwarf-3 -g3
-CXX = g++
+CXXFLAGS = -Wall -static -gdwarf-3 -g3
+CXX = clang++
 
 
 all: $(STRIPPED)
