@@ -12,7 +12,7 @@ namespace NoVirtualFunctions {
             A(int value) {
                 setData(value);
             }
-            ~A() = default;
+            ~A() {}
             int getData() { return a_data; }
             void setData(int value) { a_data = value; }
             ptrdiff_t offset_of(int &data) { return abs((ptrdiff_t)this - (ptrdiff_t)&data); }
@@ -31,7 +31,7 @@ namespace NoVirtualFunctions {
             B(int value) {
                 setData(value);
             }
-            ~B() = default;
+            ~B() {}
             int getData() { return b_data; }
             void setData(int value) { b_data = value; }
             ptrdiff_t offset_of(int &data) { return abs((ptrdiff_t)this - (ptrdiff_t)&data); }
@@ -50,7 +50,7 @@ namespace NoVirtualFunctions {
             C(int value) {
                 setData(value);
             }
-            ~C() = default;
+            ~C() {}
             int getData() { return c_data; }
             void setData(int value) { c_data = value; }
             ptrdiff_t offset_of(int &data) { return abs((ptrdiff_t)this - (ptrdiff_t)&data); }
@@ -73,7 +73,7 @@ namespace NoVirtualFunctions {
             D(int value) {
                 setData(value);
             }
-            ~D() = default;
+            ~D() {}
             int getData() { return d_data; }
             void setData(int value) { d_data = value; }
             ptrdiff_t offset_of(int &data) { return abs((ptrdiff_t)this - (ptrdiff_t)&data); }

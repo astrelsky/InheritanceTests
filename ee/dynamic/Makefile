@@ -10,7 +10,7 @@ $(EE_OBJS): ../../main.cc
 	$(EE_CXX) $(EE_CXXFLAGS) $(EE_INCS) -c $< -o $@
 
 $(MY_ERL): $(EE_OBJS)
-	$(EE_CC) $(EE_NO_CRT) -o $(MY_ERL) $(EE_OBJS) $(EE_CFLAGS) $(EE_LDFLAGS) -Wl,-r -Wl,-d
+	$(EE_CXX) $(EE_NO_CRT) -o $(MY_ERL) $(EE_OBJS) $(EE_CXXFLAGS) $(EE_LDFLAGS) -Wl,-r -Wl,-d
 
 clean:
 	rm -f $(MY_ERL) $(EE_OBJS) $(EE_ERL)

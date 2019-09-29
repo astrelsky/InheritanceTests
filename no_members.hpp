@@ -17,7 +17,7 @@ namespace NoMembers {
     class A {
         public:
             A() {}
-            ~A() = default;
+            ~A() {}
             ptrdiff_t offset_of(int &data) { return abs((ptrdiff_t)this - (ptrdiff_t)&data); }
             friend ostream& operator<< (ostream& os, A& a){
                 os << "A size: " << sizeof(A) << endl;
@@ -28,7 +28,7 @@ namespace NoMembers {
     class B {
         public:
             B() {}
-            ~B() = default;
+            ~B() {}
             ptrdiff_t offset_of(int &data) { return abs((ptrdiff_t)this - (ptrdiff_t)&data); }
             friend ostream& operator<< (ostream& os, B& b){
                 os << "B size: " << sizeof(B) << endl;
@@ -39,7 +39,7 @@ namespace NoMembers {
     class C : public A, public B {
         public:
             C() {}
-            ~C() = default;
+            ~C() {}
             ptrdiff_t offset_of(int &data) { return abs((ptrdiff_t)this - (ptrdiff_t)&data); }
             friend ostream& operator<< (ostream& os, C& c){
                 os << "C size: " << sizeof(C) << endl;
@@ -52,7 +52,7 @@ namespace NoMembers {
     class D : public virtual A, public virtual B {
         public:
             D() {}
-            ~D() = default;
+            ~D() {}
             ptrdiff_t offset_of(int &data) { return abs((ptrdiff_t)this - (ptrdiff_t)&data); }
             friend ostream& operator<< (ostream& os, D& d){
                 os << "D size: " << sizeof(D) << endl;
