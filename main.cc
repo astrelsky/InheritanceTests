@@ -7,6 +7,7 @@
 #include "fundamental_types.hpp"
 #include "no_virtual_functions.hpp"
 #include "no_members.hpp"
+#include "virtual_member_access.hpp"
 using namespace std;
 
 int main() {
@@ -17,6 +18,7 @@ int main() {
     NoVirtualFunctions::print();
     FundamentalTypes::print();
     NoMembers::print();
+    VirtualMemberAccess::run();
 #ifdef _EE
     for(;;);
 #endif

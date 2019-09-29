@@ -5,6 +5,14 @@ using namespace std;
 #ifndef __NO_MEMBERS__
 #define __NO_MEMBERS__
 
+/*
+    These are practically just namespaces. The main reason for including them
+    is that when they are not actually ever inherited unless they contain
+    a virtual function. Because of this, when they appear in a type_info structure
+    their reported offset is 0. Analyzers need to be able to determine if the
+    inherited class is just a namespace.
+*/
+
 namespace NoMembers {
     class A {
         public:
