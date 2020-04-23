@@ -1,7 +1,9 @@
 /**/main*
+*.vscode
 *.elf
 *.erl
 *.a
 *.exe
 *.dll
 *.o
+*.gch

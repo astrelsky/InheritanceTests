@@ -1,13 +1,10 @@
-SUBDIRS = dynamic static
 
-all: $(patsubst %, _dir_%, $(SUBDIRS))
+all:
+	+$(MAKE) -C dynamic
+	+$(MAKE) -C static
 
-$(patsubst %, _dir_%, $(SUBDIRS)):
-	@$(MAKE) -r -C $(patsubst _dir_%, %, $@)
-
-clean: $(patsubst %, _cleandir_%, $(SUBDIRS))
-
-$(patsubst %, _cleandir_%, $(SUBDIRS)):
-	$(MAKE) -C $(patsubst _cleandir_%, %, $@) clean
+clean:
+	$(MAKE) -C dynamic clean
+	$(MAKE) -C static clean
 
 remake: clean all

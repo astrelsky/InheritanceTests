@@ -1,0 +1,13 @@
+---
+BasedOnStyle: LLVM
+IndentWidth: 4
+ColumnLimit: 0
+---
+Language: Cpp
+DerivePointerAlignment: false
+PointerAlignment: Left
+Cpp11BracedListStyle: false
+AlignAfterOpenBracket: Align
+AlignConsecutiveMacros: true
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: Never

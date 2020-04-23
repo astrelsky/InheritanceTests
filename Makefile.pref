@@ -1,0 +1,32 @@
+SRC_DIR = ../../src
+SRC = $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_DIR = obj
+OBJECTS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.cpp=.o)))
+EXEC  = main$(EXEC_SUFFIX)
+STRIPPED  = main_stripped$(EXEC_SUFFIX)
+INCLUDE = ../../include
+PCH_SRC = pch.hpp
+PCH = $(OBJ_DIR)/$(PCH_SRC).gch
+CXXFLAGS := -I$(OBJ_DIR) -I$(INCLUDE) -Wall -gdwarf-3 -g3 -std=c++17
+CXX = $(addprefix $(PREFIX),g++)
+STRIP = $(addprefix $(PREFIX),strip)
+
+all: $(STRIPPED)
+
+$(OBJ_DIR):
+	mkdir -p $@
+
+$(PCH) : $(INCLUDE)/$(PCH_SRC) | $(OBJ_DIR)
+	$(CXX) $(CXXFLAGS) -x c++-header $< -o $@
+
+%.o $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp | $(PCH)
+	$(CXX) $(CXXFLAGS) -include pch.hpp -c $< -o $@
+
+$(EXEC): $(OBJECTS)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJECTS)
+
+$(STRIPPED): $(EXEC)
+	$(STRIP) $< -o $@
+
+clean:
+	rm -rf $(OBJ_DIR) $(INCLUDE_DIR) $(EXEC) $(STRIPPED)

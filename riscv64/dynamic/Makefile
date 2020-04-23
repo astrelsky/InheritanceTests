@@ -1,3 +1,3 @@
-PREFIX = aarch64-linux-gnu-
+PREFIX = riscv64-linux-gnu-
 
 include ../../Makefile.pref
