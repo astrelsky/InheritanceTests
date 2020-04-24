@@ -1,5 +1,6 @@
 #include "large_inheritance.hpp"
 #include "main.hpp"
+#include "printable.hpp"
 #include <cstddef>
 #include <iostream>
 
@@ -21,8 +22,8 @@ std::ptrdiff_t A::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const A& a) {
-    os << "A size: " << sizeof(A) << std::endl;
-    os << "a.a_data: " << a.offset_of(a.a_data) << std::endl;
+    os << "A size: " << sizeof(A) << '\n';
+    os << "a.a_data: " << a.offset_of(a.a_data) << '\n';
     return os;
 }
 
@@ -42,10 +43,10 @@ std::ptrdiff_t B::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const B& b) {
-    os << "B size: " << sizeof(B) << std::endl;
-    os << "b.b_data: " << b.offset_of(b.b_data) << std::endl;
-    os << "super_A: " << offset_of_base<A, B>(b) << std::endl;
-    os << "b.a_data: " << b.offset_of(b.a_data) << std::endl;
+    os << "B size: " << sizeof(B) << '\n';
+    os << "b.b_data: " << b.offset_of(b.b_data) << '\n';
+    os << "super_A: " << offset_of_base<A, B>(b) << '\n';
+    os << "b.a_data: " << b.offset_of(b.a_data) << '\n';
     return os;
 }
 
@@ -65,10 +66,10 @@ std::ptrdiff_t C::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const C& c) {
-    os << "C size: " << sizeof(C) << std::endl;
-    os << "C.c_data: " << c.offset_of(c.c_data) << std::endl;
-    os << "super_A: " << offset_of_base<A, C>(c) << std::endl;
-    os << "C.a_data: " << c.offset_of(c.a_data) << std::endl;
+    os << "C size: " << sizeof(C) << '\n';
+    os << "C.c_data: " << c.offset_of(c.c_data) << '\n';
+    os << "super_A: " << offset_of_base<A, C>(c) << '\n';
+    os << "C.a_data: " << c.offset_of(c.a_data) << '\n';
     return os;
 }
 
@@ -87,15 +88,15 @@ std::ptrdiff_t D::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const D& d) {
-    os << "D size: " << sizeof(D) << std::endl;
-    os << "d.d_data: " << d.offset_of(d.d_data) << std::endl;
-    os << "super_A: " << offset_of_base<A, D>(d) << std::endl;
-    os << "d.a_data: " << d.offset_of(d.a_data) << std::endl;
-    os << "super_B: " << offset_of_base<B, D>(d) << std::endl;
-    os << "d.b_data: " << d.offset_of(d.b_data) << std::endl;
-    os << "super_C: " << offset_of_base<C, D>(d) << std::endl;
-    os << "d.c_data: " << d.offset_of(d.c_data) << std::endl;
-    os << "d.d_data: " << d.offset_of(d.d_data) << std::endl;
+    os << "D size: " << sizeof(D) << '\n';
+    os << "d.d_data: " << d.offset_of(d.d_data) << '\n';
+    os << "super_A: " << offset_of_base<A, D>(d) << '\n';
+    os << "d.a_data: " << d.offset_of(d.a_data) << '\n';
+    os << "super_B: " << offset_of_base<B, D>(d) << '\n';
+    os << "d.b_data: " << d.offset_of(d.b_data) << '\n';
+    os << "super_C: " << offset_of_base<C, D>(d) << '\n';
+    os << "d.c_data: " << d.offset_of(d.c_data) << '\n';
+    os << "d.d_data: " << d.offset_of(d.d_data) << '\n';
     return os;
 }
 
@@ -115,8 +116,8 @@ std::ptrdiff_t Z::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const Z& z) {
-    os << "Z size: " << sizeof(Z) << std::endl;
-    os << "z.z_data: " << z.offset_of(z.z_data) << std::endl;
+    os << "Z size: " << sizeof(Z) << '\n';
+    os << "z.z_data: " << z.offset_of(z.z_data) << '\n';
     return os;
 }
 
@@ -136,8 +137,8 @@ std::ptrdiff_t U::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const U& u) {
-    os << "U size: " << sizeof(U) << std::endl;
-    os << "u.u_data: " << u.offset_of(u.u_data) << std::endl;
+    os << "U size: " << sizeof(U) << '\n';
+    os << "u.u_data: " << u.offset_of(u.u_data) << '\n';
     return os;
 }
 
@@ -157,10 +158,10 @@ std::ptrdiff_t Y::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const Y& y) {
-    os << "Y size: " << sizeof(Y) << std::endl;
-    os << "y.y_data: " << y.offset_of(y.y_data) << std::endl;
-    os << "super_U: " << offset_of_base<U, Y>(y) << std::endl;
-    os << "y.y_data: " << y.offset_of(y.y_data) << std::endl;
+    os << "Y size: " << sizeof(Y) << '\n';
+    os << "y.y_data: " << y.offset_of(y.y_data) << '\n';
+    os << "super_U: " << offset_of_base<U, Y>(y) << '\n';
+    os << "y.y_data: " << y.offset_of(y.y_data) << '\n';
     return os;
 }
 
@@ -180,8 +181,8 @@ std::ptrdiff_t X::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const X& x) {
-    os << "X size: " << sizeof(X) << std::endl;
-    os << "x.x_data: " << x.offset_of(x.x_data) << std::endl;
+    os << "X size: " << sizeof(X) << '\n';
+    os << "x.x_data: " << x.offset_of(x.x_data) << '\n';
     return os;
 }
 
@@ -204,22 +205,22 @@ std::ptrdiff_t W::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const W& w) {
-    os << "W size: " << sizeof(W) << std::endl;
-    os << "w.w_data: " << w.offset_of(w.w_data) << std::endl;
-    os << "super_C: " << offset_of_base<C, W>(w) << std::endl;
-    os << "w.c_data: " << w.offset_of(w.c_data) << std::endl;
-    os << "super_A: " << offset_of_base<A, W>(w) << std::endl;
-    os << "w.a_data: " << w.offset_of(w.a_data) << std::endl;
-    os << "super_B: " << offset_of_base<B, W>(w) << std::endl;
-    os << "w.b_data: " << w.offset_of(w.b_data) << std::endl;
-    os << "super_Z: " << offset_of_base<Z, W>(w) << std::endl;
-    os << "w.z_data: " << w.offset_of(w.z_data) << std::endl;
-    os << "super_Y: " << offset_of_base<Y, W>(w) << std::endl;
-    os << "w.y_data: " << w.offset_of(w.y_data) << std::endl;
-    os << "super_X: " << offset_of_base<X, W>(w) << std::endl;
-    os << "w.x_data: " << w.offset_of(w.x_data) << std::endl;
-    os << "super_U: " << offset_of_base<U, W>(w) << std::endl;
-    os << "w.y_data: " << w.offset_of(w.y_data) << std::endl;
+    os << "W size: " << sizeof(W) << '\n';
+    os << "w.w_data: " << w.offset_of(w.w_data) << '\n';
+    os << "super_C: " << offset_of_base<C, W>(w) << '\n';
+    os << "w.c_data: " << w.offset_of(w.c_data) << '\n';
+    os << "super_A: " << offset_of_base<A, W>(w) << '\n';
+    os << "w.a_data: " << w.offset_of(w.a_data) << '\n';
+    os << "super_B: " << offset_of_base<B, W>(w) << '\n';
+    os << "w.b_data: " << w.offset_of(w.b_data) << '\n';
+    os << "super_Z: " << offset_of_base<Z, W>(w) << '\n';
+    os << "w.z_data: " << w.offset_of(w.z_data) << '\n';
+    os << "super_Y: " << offset_of_base<Y, W>(w) << '\n';
+    os << "w.y_data: " << w.offset_of(w.y_data) << '\n';
+    os << "super_X: " << offset_of_base<X, W>(w) << '\n';
+    os << "w.x_data: " << w.offset_of(w.x_data) << '\n';
+    os << "super_U: " << offset_of_base<U, W>(w) << '\n';
+    os << "w.y_data: " << w.offset_of(w.y_data) << '\n';
     return os;
 }
 
@@ -251,16 +252,16 @@ std::ptrdiff_t V::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const V& v) {
-    os << "V size: " << sizeof(V) << std::endl;
-    os << "v.v_data: " << v.offset_of(v.v_data) << std::endl;
-    os << "super_Z: " << offset_of_base<Z, V>(v) << std::endl;
-    os << "v.z_data: " << v.offset_of(v.z_data) << std::endl;
-    os << "super_Y: " << offset_of_base<Y, V>(v) << std::endl;
-    os << "v.y_data: " << v.offset_of(v.y_data) << std::endl;
-    os << "super_X: " << offset_of_base<X, V>(v) << std::endl;
-    os << "v.x_data: " << v.offset_of(v.x_data) << std::endl;
-    os << "super_A: " << offset_of_base<A, V>(v) << std::endl;
-    os << "v.a_data: " << v.offset_of(v.a_data) << std::endl;
+    os << "V size: " << sizeof(V) << '\n';
+    os << "v.v_data: " << v.offset_of(v.v_data) << '\n';
+    os << "super_Z: " << offset_of_base<Z, V>(v) << '\n';
+    os << "v.z_data: " << v.offset_of(v.z_data) << '\n';
+    os << "super_Y: " << offset_of_base<Y, V>(v) << '\n';
+    os << "v.y_data: " << v.offset_of(v.y_data) << '\n';
+    os << "super_X: " << offset_of_base<X, V>(v) << '\n';
+    os << "v.x_data: " << v.offset_of(v.x_data) << '\n';
+    os << "super_A: " << offset_of_base<A, V>(v) << '\n';
+    os << "v.a_data: " << v.offset_of(v.a_data) << '\n';
     return os;
 }
 
@@ -275,18 +276,22 @@ static X x;
 static Y y;
 static Z z;
 
-void print() {
-    printTitle(" LargeInheritance ");
-    std::cout << a << std::endl;
-    std::cout << b << std::endl;
-    std::cout << c << std::endl;
-    std::cout << d << std::endl;
-    std::cout << u << std::endl;
-    std::cout << v << std::endl;
-    std::cout << w << std::endl;
-    std::cout << x << std::endl;
-    std::cout << y << std::endl;
-    std::cout << z;
-}
+static class : Printable {
+
+    void print() const {
+        printTitle(" LargeInheritance ");
+        std::cout << a << '\n';
+        std::cout << b << '\n';
+        std::cout << c << '\n';
+        std::cout << d << '\n';
+        std::cout << u << '\n';
+        std::cout << v << '\n';
+        std::cout << w << '\n';
+        std::cout << x << '\n';
+        std::cout << y << '\n';
+        std::cout << z;
+        std::cout.flush();
+    }
+} printer;
 
 } // large_inheritance

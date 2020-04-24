@@ -9,4 +9,7 @@ clean:
 
 remake: clean all
 
-.PHONY: all clean $(SUBDIRS)
+run:
+	$(MAKE) -C dynamic run
+
+.PHONY: all clean run $(SUBDIRS)

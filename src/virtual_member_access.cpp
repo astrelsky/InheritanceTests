@@ -1,5 +1,7 @@
 #include "main.hpp"
+#include "printable.hpp"
 #include "virtual_member_access.hpp"
+#include <iostream>
 
 /*
     These are for determining how to appropriatly decompile the accessing of
@@ -94,15 +96,24 @@ static F f;
 static G g;
 static H h;
 
-void run() {
-    a.access();
-    b.access();
-    c.access();
-    d.access();
-    e.access();
-    f.access();
-    g.access();
-    h.access();
-}
+static class : Printable {
+
+    void print() const {
+        run();
+    }
+
+    static void run() {
+        printTitle(" VirtualMemberAccess ");
+        a.access();
+        b.access();
+        c.access();
+        d.access();
+        e.access();
+        f.access();
+        g.access();
+        h.access();
+        std::cout << "members accessed" << std::endl;
+    }
+} accesser;
 
 } // virtual_member_access

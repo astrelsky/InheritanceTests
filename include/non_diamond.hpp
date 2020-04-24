@@ -24,7 +24,6 @@ class A {
 class B : virtual public A {
     public:
         virtual ~B() = default;
-        const int &getADataRef() const;
         virtual void b_foo();
         virtual void set_b_data(int data);
         virtual int get_b_data() const;
@@ -38,7 +37,6 @@ class B : virtual public A {
 class C : public A {
     public:
         virtual ~C() = default;
-        const int &getADataRef() const;
         virtual void c_foo();
         virtual void set_c_data(int data);
         virtual int get_c_data() const;
@@ -56,13 +54,13 @@ class D : public B, public C {
         virtual void set_d_data(int data);
         virtual int get_d_data() const;
         std::ptrdiff_t offset_of(const int &data) const;
+        std::ptrdiff_t offset_of_c_a_data() const;
+        std::ptrdiff_t offset_of_b_a_data() const;
         friend std::ostream& operator<< (std::ostream& os, const D& d);
 
     protected:
         int d_data;
 };
-
-void print();
 
 } // non_diamond
 

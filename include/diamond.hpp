@@ -60,8 +60,6 @@ class D : public B, public C {
         int d_data;
 };
 
-void print();
-
 } // diamond
 
 #endif // DIAMOND_HPP

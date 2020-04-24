@@ -41,8 +41,6 @@ struct D : virtual A, virtual B {
 class E : virtual C {
 };
 
-void print();
-
 } // no_members
 
 #endif // NO_MEMBERS_HPP

@@ -1,5 +1,6 @@
 #include "main.hpp"
 #include "diamond.hpp"
+#include "printable.hpp"
 #include <cstddef>
 #include <iostream>
 
@@ -21,8 +22,8 @@ std::ptrdiff_t A::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const A& a) {
-    os << "A size: " << sizeof(A) << std::endl;
-    os << "a.a_data: " << a.offset_of(a.a_data) << std::endl;
+    os << "A size: " << sizeof(A) << '\n';
+    os << "a.a_data: " << a.offset_of(a.a_data) << '\n';
     return os;
 }
 
@@ -42,10 +43,10 @@ std::ptrdiff_t B::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const B& b) {
-    os << "B size: " << sizeof(B) << std::endl;
-    os << "b.b_data: " << b.offset_of(b.b_data) << std::endl;
-    os << "super_A: " << offset_of_base<A, B>(b) << std::endl;
-    os << "b.a_data: " << b.offset_of(b.a_data) << std::endl;
+    os << "B size: " << sizeof(B) << '\n';
+    os << "b.b_data: " << b.offset_of(b.b_data) << '\n';
+    os << "super_A: " << offset_of_base<A, B>(b) << '\n';
+    os << "b.a_data: " << b.offset_of(b.a_data) << '\n';
     return os;
 }
 
@@ -65,10 +66,10 @@ std::ptrdiff_t C::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const C& c){
-    os << "C size: " << sizeof(B) << std::endl;
-    os << "c.c_data: " << c.offset_of(c.c_data) << std::endl;
-    os << "super_A: " << offset_of_base<A, C>(c) << std::endl;
-    os << "c.a_data: " << c.offset_of(c.a_data) << std::endl;
+    os << "C size: " << sizeof(B) << '\n';
+    os << "c.c_data: " << c.offset_of(c.c_data) << '\n';
+    os << "super_A: " << offset_of_base<A, C>(c) << '\n';
+    os << "c.a_data: " << c.offset_of(c.a_data) << '\n';
     return os;
 }
 
@@ -87,14 +88,14 @@ std::ptrdiff_t D::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const D& d){
-    os << "D size: " << sizeof(D) << std::endl;
-    os << "d.d_data: " << d.offset_of(d.d_data) << std::endl;
-    os << "super_B: " << offset_of_base<B, D>(d) << std::endl;
-    os << "d.b_data: " << d.offset_of(d.b_data) << std::endl;
-    os << "super_A: " << offset_of_base<A, D>(d) << std::endl;
-    os << "d.a_data: " << d.offset_of(d.a_data) << std::endl;
-    os << "super_C: " << offset_of_base<C, D>(d) << std::endl;
-    os << "d.c_data: " << d.offset_of(d.c_data) << std::endl;
+    os << "D size: " << sizeof(D) << '\n';
+    os << "d.d_data: " << d.offset_of(d.d_data) << '\n';
+    os << "super_B: " << offset_of_base<B, D>(d) << '\n';
+    os << "d.b_data: " << d.offset_of(d.b_data) << '\n';
+    os << "super_A: " << offset_of_base<A, D>(d) << '\n';
+    os << "d.a_data: " << d.offset_of(d.a_data) << '\n';
+    os << "super_C: " << offset_of_base<C, D>(d) << '\n';
+    os << "d.c_data: " << d.offset_of(d.c_data) << '\n';
     return os;
 }
 
@@ -103,12 +104,16 @@ static B b;
 static C c;
 static D d;
 
-void print() {
-    printTitle(" Diamond ");
-    std::cout << a << std::endl;
-    std::cout << b << std::endl;
-    std::cout << c << std::endl;
-    std::cout << d;
-}
+static class : Printable {
+
+    void print() const {
+        printTitle(" Diamond ");
+        std::cout << a << '\n';
+        std::cout << b << '\n';
+        std::cout << c << '\n';
+        std::cout << d;
+        std::cout.flush();
+    }
+} printer;
 
 } // diamond

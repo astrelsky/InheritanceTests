@@ -66,8 +66,6 @@ class D : public B {
         int d_data;
 };
 
-void print();
-
 } // no_virtual_functions
 
 #endif // NO_VIRTUAL_FUNCTIONS_HPP

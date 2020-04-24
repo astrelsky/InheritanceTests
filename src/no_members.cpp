@@ -1,5 +1,6 @@
 #include "main.hpp"
 #include "no_members.hpp"
+#include "printable.hpp"
 #include <cstddef>
 #include <iostream>
 
@@ -18,7 +19,7 @@ std::ptrdiff_t A::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const A& a){
-    os << "A size: " << sizeof(A) << std::endl;
+    os << "A size: " << sizeof(A) << '\n';
     return os;
 }
 
@@ -27,7 +28,7 @@ std::ptrdiff_t B::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const B& b){
-    os << "B size: " << sizeof(B) << std::endl;
+    os << "B size: " << sizeof(B) << '\n';
     return os;
 }
 
@@ -36,9 +37,9 @@ std::ptrdiff_t C::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const C& c){
-    os << "C size: " << sizeof(C) << std::endl;
-    os << "super_A: " << offset_of_base<A, C>(c) << std::endl;
-    os << "super_B: " << offset_of_base<B, C>(c) << std::endl;
+    os << "C size: " << sizeof(C) << '\n';
+    os << "super_A: " << offset_of_base<A, C>(c) << '\n';
+    os << "super_B: " << offset_of_base<B, C>(c) << '\n';
     return os;
 }
 
@@ -47,9 +48,9 @@ std::ptrdiff_t D::offset_of(const int &data) const {
 }
 
 std::ostream& operator<< (std::ostream& os, const D& d){
-    os << "D size: " << sizeof(D) << std::endl;
-    os << "super_B: " << offset_of_base<B, D>(d) << std::endl;
-    os << "super_A: " << offset_of_base<A, D>(d) << std::endl;
+    os << "D size: " << sizeof(D) << '\n';
+    os << "super_B: " << offset_of_base<B, D>(d) << '\n';
+    os << "super_A: " << offset_of_base<A, D>(d) << '\n';
     return os;
 }
 
@@ -59,12 +60,16 @@ static C c;
 static D d;
 static E e;
 
-void print() {
-    printTitle(" NoMembers ");
-    std::cout << a << std::endl;
-    std::cout << b << std::endl;
-    std::cout << c << std::endl;
-    std::cout << d;
-}
+static class : Printable {
+
+    void print() const {
+        printTitle(" NoMembers ");
+        std::cout << a << '\n';
+        std::cout << b << '\n';
+        std::cout << c << '\n';
+        std::cout << d;
+        std::cout.flush();
+    }
+} printer;
 
 } // no_members

@@ -74,8 +74,6 @@ class I : public G, public H {
 
 extern G g;
 
-void print();
-
 } // abstract_inheritance
 
 #endif // ABSTRACT_INHERITANCE_HPP

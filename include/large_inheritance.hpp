@@ -143,8 +143,6 @@ class V : public Z, public Y, public X, public A {
         int v_data;
 };
 
-void print();
-
 } // large_inheritance
 
 #endif // LARGE_INHERITANCE_HPP

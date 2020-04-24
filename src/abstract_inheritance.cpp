@@ -1,5 +1,6 @@
 #include "abstract_inheritance.hpp"
 #include "main.hpp"
+#include "printable.hpp"
 #include <iostream>
 #include <cstddef>
 #include <string>
@@ -126,12 +127,15 @@ G g(1);
 static H h(2);
 static I i(3);
 
-void print() {
-    printTitle(" AbstractInheritance ");
-    std::cout << g << '\n';
-    std::cout << h << '\n';
-    std::cout << i;
-    std::cout.flush();
-}
+static class : Printable {
+
+    void print() const {
+        printTitle(" AbstractInheritance ");
+        std::cout << g << '\n';
+        std::cout << h << '\n';
+        std::cout << i;
+        std::cout.flush();
+    }
+} printer;
 
 } // abstract_inheritance

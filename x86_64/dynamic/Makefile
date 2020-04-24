@@ -1,4 +1,6 @@
 include ../../Makefile.pref
 
-run: clean all
+run:
+	$(MAKE) clean
+	$(MAKE) all
 	clear && ./main

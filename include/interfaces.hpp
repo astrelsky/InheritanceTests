@@ -4,30 +4,34 @@
 namespace interfaces {
 
 struct A {
-    virtual void aFoo() = 0;
+    virtual void aFoo() const = 0;
 };
 
 struct B {
-    virtual void bFoo() = 0;
+    virtual void bFoo() const = 0;
 };
 
 struct C {
-    virtual void cFoo() = 0;
+    virtual void cFoo() const = 0;
 };
 
 struct D {
-    virtual void dFoo() = 0;
+    virtual void dFoo() const = 0;
 };
 
 struct E : public A, public B, public C, public D {
-    void aFoo();
-    void bFoo();
-    void cFoo();
-    void dFoo();
-    void print();
+    void aFoo() const;
+    void bFoo() const;
+    void cFoo() const;
+    void dFoo() const;
 };
 
-void print();
+struct F : public A, public B, public C, public D {
+    void aFoo() const;
+    void bFoo() const;
+    void cFoo() const;
+    void dFoo() const;
+};
 
 } // interfaces
 

@@ -16,10 +16,10 @@ all: $(STRIPPED)
 $(OBJ_DIR):
 	mkdir -p $@
 
-$(PCH) : $(INCLUDE)/$(PCH_SRC) | $(OBJ_DIR)
+$(PCH) : $(INCLUDE)/$(PCH_SRC)
 	$(CXX) $(CXXFLAGS) -x c++-header $< -o $@
 
-%.o $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp | $(PCH)
+%.o $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp | $(OBJ_DIR) $(PCH)
 	$(CXX) $(CXXFLAGS) -include pch.hpp -c $< -o $@
 
 $(EXEC): $(OBJECTS)
