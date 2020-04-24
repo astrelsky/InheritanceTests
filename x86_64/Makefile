@@ -1,15 +1,5 @@
 
-all:
-	+$(MAKE) -C dynamic
-	+$(MAKE) -C static
-
-clean:
-	$(MAKE) -C dynamic clean
-	$(MAKE) -C static clean
-
-remake: clean all
+include ../Makefile.arch_pref
 
 run:
 	$(MAKE) -C dynamic run
-
-.PHONY: all clean run $(SUBDIRS)

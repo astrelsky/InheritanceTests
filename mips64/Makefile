@@ -1,12 +1,3 @@
+PREFIX = mips64el-linux-gnuabi64-
 
-all:
-	+$(MAKE) -C dynamic
-	+$(MAKE) -C static
-
-clean:
-	$(MAKE) -C dynamic clean
-	$(MAKE) -C static clean
-
-remake: clean all
-
-.PHONY: all clean $(SUBDIRS)
+include ../Makefile.arch_pref

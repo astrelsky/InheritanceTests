@@ -1,12 +1,4 @@
 
-all:
-	+$(MAKE) -C dynamic
-	+$(MAKE) -C static
+include ../Makefile.arch_pref
 
-clean:
-	$(MAKE) -C dynamic clean
-	$(MAKE) -C static clean
-
-remake: clean all
-
-.PHONY: all clean $(SUBDIRS)
+CXX = clang++

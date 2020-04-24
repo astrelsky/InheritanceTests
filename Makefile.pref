@@ -5,9 +5,10 @@ OBJECTS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.cpp=.o)))
 EXEC  = main$(EXEC_SUFFIX)
 STRIPPED  = main_stripped$(EXEC_SUFFIX)
 INCLUDE = ../../include
+ARCH_INCLUDE = ../include
 PCH_SRC = pch.hpp
-PCH = $(OBJ_DIR)/$(PCH_SRC).gch
-CXXFLAGS := -I$(OBJ_DIR) -I$(INCLUDE) -Wall -gdwarf-3 -g3 -std=c++17
+PCH = $(ARCH_INCLUDE)/$(PCH_SRC).gch
+CXXFLAGS := -I$(ARCH_INCLUDE) -I$(INCLUDE) -Wall -gdwarf-3 -g3 -std=c++17
 CXX = $(addprefix $(PREFIX),g++)
 STRIP = $(addprefix $(PREFIX),strip)
 
@@ -15,9 +16,6 @@ all: $(STRIPPED)
 
 $(OBJ_DIR):
 	mkdir -p $@
-
-$(PCH) : $(INCLUDE)/$(PCH_SRC)
-	$(CXX) $(CXXFLAGS) -x c++-header $< -o $@
 
 %.o $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp | $(OBJ_DIR) $(PCH)
 	$(CXX) $(CXXFLAGS) -include pch.hpp -c $< -o $@
@@ -30,3 +28,8 @@ $(STRIPPED): $(EXEC)
 
 clean:
 	rm -rf $(OBJ_DIR) $(INCLUDE_DIR) $(EXEC) $(STRIPPED)
+
+fullclean: clean
+	rm -rf $(ARCH_INCLUDE)
+
+pch: $(PCH)

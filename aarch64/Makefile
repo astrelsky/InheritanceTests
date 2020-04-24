@@ -1,10 +1,3 @@
+PREFIX = aarch64-linux-gnu-
 
-all:
-	+$(MAKE) -C dynamic
-	+$(MAKE) -C static
-
-clean:
-	$(MAKE) -C dynamic clean
-	$(MAKE) -C static clean
-
-remake: clean all
+include ../Makefile.arch_pref

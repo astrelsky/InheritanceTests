@@ -1,12 +1,4 @@
+PREFIX = x86_64-w64-mingw32-
+EXEC_SUFFIX = .exe
 
-all:
-	+$(MAKE) -C dynamic
-	+$(MAKE) -C static
-
-clean:
-	$(MAKE) -C dynamic clean
-	$(MAKE) -C static clean
-
-remake: clean all
-
-.PHONY: all clean $(SUBDIRS)
+include ../Makefile.arch_pref

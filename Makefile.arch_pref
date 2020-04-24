@@ -1,0 +1,27 @@
+INCLUDE = ../include
+ARCH_INCLUDE = include
+PCH_SRC = pch.hpp
+PCH = $(ARCH_INCLUDE)/$(PCH_SRC).gch
+CXXFLAGS := -I$(ARCH_INCLUDE) -I$(INCLUDE) -Wall -gdwarf-3 -g3 -std=c++17
+CXX = $(addprefix $(PREFIX),g++)
+
+all: $(PCH)
+	+$(MAKE) -C dynamic
+	+$(MAKE) -C static
+
+clean: $(PCH)
+	$(MAKE) -C dynamic clean
+	$(MAKE) -C static clean
+
+fullclean: clean
+	rm -rf include
+
+$(ARCH_INCLUDE):
+	mkdir -p $@
+
+$(PCH) : $(INCLUDE)/$(PCH_SRC) | $(ARCH_INCLUDE)
+	$(CXX) $(CXXFLAGS) -x c++-header $< -o $@
+
+pch: $(PCH)
+
+remake: clean all

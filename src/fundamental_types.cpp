@@ -15,8 +15,7 @@ namespace fundamental_types {
     Also, the __enum_type_info hold absolutely no useful information regarding the enum.
 */
 
-static void dummyFunction() {
-}
+static void print();
 
 static const std::type_info& intType = typeid(int);
 static const std::type_info& arrayType = typeid(int[]);
@@ -24,19 +23,23 @@ static const std::type_info& pointerType = typeid(int*);
 static const std::type_info& enumType = typeid(Number::ZERO);
 static const std::type_info& classType = typeid(abstract_inheritance::g);
 static const std::type_info& pointerToMemberType = typeid(&abstract_inheritance::G::getSize);
-static const std::type_info& functionType = typeid(dummyFunction);
+static const std::type_info& functionType = typeid(print);
+
+static void print() {
+    std::cout << intType.name() << '\n';
+    std::cout << arrayType.name() << '\n';
+    std::cout << pointerType.name() << '\n';
+    std::cout << enumType.name() << '\n';
+    std::cout << classType.name() << '\n';
+    std::cout << pointerToMemberType.name() << '\n';
+    std::cout << functionType.name() << std::endl;
+}
 
 static class : Printable {
 
     void print() const {
         printTitle(" FundamentalTypes ");
-        std::cout << intType.name() << '\n';
-        std::cout << arrayType.name() << '\n';
-        std::cout << pointerType.name() << '\n';
-        std::cout << enumType.name() << '\n';
-        std::cout << classType.name() << '\n';
-        std::cout << pointerToMemberType.name() << '\n';
-        std::cout << functionType.name() << std::endl;
+        fundamental_types::print();
     }
 } printer;
 
