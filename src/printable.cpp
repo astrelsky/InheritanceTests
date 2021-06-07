@@ -1,5 +1,5 @@
-#include "main.hpp"
 #include "printable.hpp"
+#include "main.hpp"
 #include <iostream>
 #include <set>
 #include <string>
@@ -7,11 +7,11 @@
 
 const static std::string SEPARATOR = "------------------------------------------";
 
-std::set<const Printable*> *Printable::printables = nullptr;
+std::set<const Printable *> *Printable::printables = nullptr;
 
 Printable::Printable() {
     if (printables == nullptr)
-        printables = new std::set<const Printable*>();
+        printables = new std::set<const Printable *>();
     printables->insert(this);
 }
 
@@ -23,7 +23,7 @@ Printable::~Printable() {
     }
 }
 
-const std::set<const Printable*> *Printable::getPrintables() {
+const std::set<const Printable *> *Printable::getPrintables() {
     if (printables != nullptr)
         return printables;
     throw std::runtime_error("No printables have been constructed");

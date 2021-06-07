@@ -1,5 +1,5 @@
-#include "abstract_inheritance.hpp"
 #include "fundamental_types.hpp"
+#include "abstract_inheritance.hpp"
 #include "main.hpp"
 #include "printable.hpp"
 #include <cstddef>
@@ -17,13 +17,13 @@ namespace fundamental_types {
 
 static void print();
 
-static const std::type_info& intType = typeid(int);
-static const std::type_info& arrayType = typeid(int[]);
-static const std::type_info& pointerType = typeid(int*);
-static const std::type_info& enumType = typeid(Number::ZERO);
-static const std::type_info& classType = typeid(abstract_inheritance::g);
-static const std::type_info& pointerToMemberType = typeid(&abstract_inheritance::G::getSize);
-static const std::type_info& functionType = typeid(print);
+static const std::type_info &intType = typeid(int);
+static const std::type_info &arrayType = typeid(int[]);
+static const std::type_info &pointerType = typeid(int *);
+static const std::type_info &enumType = typeid(Number::ZERO);
+static const std::type_info &classType = typeid(abstract_inheritance::g);
+static const std::type_info &pointerToMemberType = typeid(&abstract_inheritance::G::getSize);
+static const std::type_info &functionType = typeid(print);
 
 static void print() {
     std::cout << intType.name() << '\n';
@@ -35,12 +35,12 @@ static void print() {
     std::cout << functionType.name() << std::endl;
 }
 
-static class : Printable {
+static class : public Printable {
 
-    void print() const {
+    void print() const override {
         printTitle(" FundamentalTypes ");
         fundamental_types::print();
     }
 } printer;
 
-} // fundamental_types
+} // namespace fundamental_types

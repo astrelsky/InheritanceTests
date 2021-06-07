@@ -1,73 +1,121 @@
-#include "main.hpp"
 #include "interfaces.hpp"
+#include "main.hpp"
 #include "printable.hpp"
 #include <iostream>
 
 namespace interfaces {
 
+namespace virtual_functions {
+
 void E::aFoo() const {
-    std::cout << "E::aFoo\n";
+    std::cout << "virtual_functions::E::aFoo\n";
 }
 
 void E::bFoo() const {
-    std::cout << "E::bFoo\n";
+    std::cout << "virtual_functions::E::bFoo\n";
 }
 
 void E::cFoo() const {
-    std::cout << "E::cFoo\n";
+    std::cout << "virtual_functions::E::cFoo\n";
 }
 
 void E::dFoo() const {
-    std::cout << "E::dFoo\n";
+    std::cout << "virtual_functions::E::dFoo\n";
 }
 
 void F::aFoo() const {
-    std::cout << "F::aFoo\n";
+    std::cout << "virtual_functions::F::aFoo\n";
 }
 
 void F::bFoo() const {
-    std::cout << "F::bFoo\n";
+    std::cout << "virtual_functions::F::bFoo\n";
 }
 
 void F::cFoo() const {
-    std::cout << "F::cFoo\n";
+    std::cout << "virtual_functions::F::cFoo\n";
 }
 
 void F::dFoo() const {
-    std::cout << "F::dFoo\n";
+    std::cout << "virtual_functions::F::dFoo\n";
 }
 
-static void doAfoo(const A *a) {
+} // virtual_functions
+
+namespace non_virtual_functions {
+
+void A::aFoo() const {
+    std::cout << "non_virtual_functions::A::aFoo\n";
+}
+
+void B::bFoo() const {
+    std::cout << "non_virtual_functions::B::bFoo\n";
+}
+
+void C::cFoo() const {
+    std::cout << "non_virtual_functions::C::cFoo\n";
+}
+
+void D::dFoo() const {
+    std::cout << "non_virtual_functions::D::dFoo\n";
+}
+
+void E::eFoo() const {
+    std::cout << "non_virtual_functions::E::eFoo\n";
+}
+
+void F::fFoo() const {
+    std::cout << "non_virtual_functions::F::fFoo\n";
+}
+
+} // non_virtual_functions
+
+template <class T>
+static void doAfoo(const T *a) {
     a->aFoo();
 }
 
-static void doBfoo(const B *b) {
+template <class T>
+static void doBfoo(const T *b) {
     b->bFoo();
 }
 
-static void doCfoo(const C *c) {
+template <class T>
+static void doCfoo(const T *c) {
     c->cFoo();
 }
 
-static void doDfoo(const D *d) {
+template <class T>
+static void doDfoo(const T *d) {
     d->dFoo();
 }
 
-static class : Printable {
+static class : public Printable {
 
-    void print() const {
-        E e;
-        F f;
+    void print() const override {
+        virtual_functions::E virtualE;
+        virtual_functions::F virtualF;
+        non_virtual_functions::E nonVirtualE;
+        non_virtual_functions::F nonVirtualF;
         printTitle(" Interfaces ");
-        doAfoo(&e);
-        doAfoo(&f);
-        doBfoo(&e);
-        doBfoo(&f);
-        doCfoo(&e);
-        doCfoo(&f);
-        doDfoo(&e);
-        doDfoo(&f);
+        doAfoo(&virtualE);
+        doAfoo(&virtualF);
+        doBfoo(&virtualE);
+        doBfoo(&virtualF);
+        doCfoo(&virtualE);
+        doCfoo(&virtualF);
+        doDfoo(&virtualE);
+        doDfoo(&virtualF);
+        doAfoo(&nonVirtualE);
+        doAfoo(&nonVirtualF);
+        doBfoo(&nonVirtualE);
+        doBfoo(&nonVirtualF);
+        doCfoo(&nonVirtualE);
+        doCfoo(&nonVirtualF);
+        doDfoo(&nonVirtualE);
+        doDfoo(&nonVirtualF);
+        // don't delete the type info
+        std::cout << typeid(nonVirtualE).name() << '\n';
     }
 } printer;
 
-} // interfaces
+} // namespace interfaces

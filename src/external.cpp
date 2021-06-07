@@ -1,5 +1,5 @@
-#include "main.hpp"
 #include "external.hpp"
+#include "main.hpp"
 #include "printable.hpp"
 #include <exception>
 #include <iostream>
@@ -14,9 +14,9 @@ static void dummyThrower() {
     throw DummyException();
 }
 
-static class : Printable {
+static class : public Printable {
 
-    void print() const {
+    void print() const override {
         printTitle(" External ");
         try {
             dummyThrower();
@@ -26,4 +26,4 @@ static class : Printable {
     }
 } printer;
 
-} // external
+} // namespace external

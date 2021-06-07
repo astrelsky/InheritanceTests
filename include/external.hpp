@@ -5,14 +5,14 @@
 
 namespace external {
 
-class DummyException : public std::exception {
+class DummyException final : public std::exception {
 
-    public:
-        DummyException() = default;
-        virtual ~DummyException() = default;
-        const char *what() const throw();
+  public:
+    DummyException() = default;
+    virtual ~DummyException() = default;
+    const char *what() const throw() override;
 };
 
-} // external
+} // namespace external
 
 #endif // EXTERNAL_HPP

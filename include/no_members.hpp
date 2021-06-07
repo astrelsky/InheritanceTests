@@ -1,7 +1,12 @@
 #ifndef NO_MEMBERS_HPP
 #define NO_MEMBERS_HPP
 
+#include "serializable.hpp"
 #include <cstddef>
+
+#if SERIALIZE
+#include <boost/property_tree/ptree.hpp>
+#endif
 
 /*
     These are practically just namespaces. The main reason for including them
@@ -17,30 +22,41 @@ struct A {
     A() = default;
     ~A() = default;
     std::ptrdiff_t offset_of(const int &data) const;
+#if SERIALIZE
+    void serialize(boost::property_tree::ptree &tree) const;
+#endif
 };
 
 struct B {
     B() = default;
     ~B() = default;
     std::ptrdiff_t offset_of(const int &data) const;
+#if SERIALIZE
+    void serialize(boost::property_tree::ptree &tree) const;
+#endif
 };
 
 struct C : A, B {
     C() = default;
     ~C() = default;
     std::ptrdiff_t offset_of(const int &data) const;
+#if SERIALIZE
+    void serialize(boost::property_tree::ptree &tree) const;
+#endif
 };
 
-struct D : virtual A, virtual B {
+struct D final : virtual A, virtual B {
     D() = default;
     ~D() = default;
     std::ptrdiff_t offset_of(const int &data) const;
+#if SERIALIZE
+    void serialize(boost::property_tree::ptree &tree) const;
+#endif
 };
 
 // this forces the generation of typeinfo for C
-class E : virtual C {
-};
+class E final : virtual C {};
 
-} // no_members
+} // namespace no_members
 
 #endif // NO_MEMBERS_HPP

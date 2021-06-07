@@ -7,3 +7,5 @@
 *.dll
 *.o
 *.gch
+*.json
+vs/

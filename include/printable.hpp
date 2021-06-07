@@ -6,16 +6,16 @@
 
 class Printable {
 
-    static std::set<const Printable*> *printables;
+    static std::set<const Printable *> *printables;
 
-    protected:
-        Printable();
-        virtual ~Printable();
-        static void printTitle(std::string_view name);
+  protected:
+    Printable();
+    virtual ~Printable();
+    static void printTitle(std::string_view name);
 
-    public:
-        virtual void print() const = 0;
-        static const std::set<const Printable*> *getPrintables();
+  public:
+    virtual void print() const = 0;
+    static const std::set<const Printable *> *getPrintables();
 };
 
 #endif // PRINTABLE_HPP

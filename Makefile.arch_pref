@@ -9,7 +9,11 @@ all: $(PCH)
 	+$(MAKE) -C dynamic
 	+$(MAKE) -C static
 
-clean: $(PCH)
+serializable: $(PCH)
+	+$(MAKE) -C dynamic serializable
+	+$(MAKE) -C static serializable
+
+clean:
 	$(MAKE) -C dynamic clean
 	$(MAKE) -C static clean
 

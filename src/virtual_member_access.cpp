@@ -1,6 +1,6 @@
+#include "virtual_member_access.hpp"
 #include "main.hpp"
 #include "printable.hpp"
-#include "virtual_member_access.hpp"
 #include <iostream>
 
 /*
@@ -96,13 +96,9 @@ static F f;
 static G g;
 static H h;
 
-static class : Printable {
+static class : public Printable {
 
-    void print() const {
-        run();
-    }
-
-    static void run() {
+    void print() const override {
         printTitle(" VirtualMemberAccess ");
         a.access();
         b.access();
@@ -116,4 +112,4 @@ static class : Printable {
     }
 } accesser;
 
-} // virtual_member_access
+} // namespace virtual_member_access

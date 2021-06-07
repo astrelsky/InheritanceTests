@@ -2,6 +2,7 @@ SUBDIRS = aarch64 arm clang mingw32 mingw32-w64 mips mips64 ppc ppc64 riscv64 x8
 
 define runner =
 
+	@echo $(1)
 	+$(MAKE) -C $(dir) $(1)
 endef
 define cleaner =
@@ -12,6 +13,9 @@ endef
 all: pch
 	$(foreach dir,$(SUBDIRS),$(call runner))
 
+serializable: pch
+	$(foreach dir,$(SUBDIRS),$(call runner,serializable))
+
 clean:
 	$(foreach dir,$(SUBDIRS),$(call cleaner,clean))
 
@@ -21,7 +25,7 @@ fullclean:
 pch: $(patsubst %, _pchdir_%, $(SUBDIRS))
 
 $(patsubst %, _pchdir_%, $(SUBDIRS)):
-	$(MAKE) -C $(patsubst _pchdir_%, %, $@) pch
+	+$(MAKE) -C $(patsubst _pchdir_%, %, $@) pch
 
 remake: clean all
 
