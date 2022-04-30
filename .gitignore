@@ -1,4 +1,5 @@
 /**/main*
+!src/main.cpp
 *.vscode
 *.elf
 *.erl
@@ -7,3 +8,4 @@
 *.dll
 *.o
 *.gch
+.clangd

@@ -6,9 +6,7 @@ EXEC  = main$(EXEC_SUFFIX)
 STRIPPED  = main_stripped$(EXEC_SUFFIX)
 INCLUDE = ../../include
 ARCH_INCLUDE = ../include
-PCH_SRC = pch.hpp
-PCH = $(ARCH_INCLUDE)/$(PCH_SRC).gch
-CXXFLAGS := -I$(ARCH_INCLUDE) -I$(INCLUDE) -Wall -gdwarf-3 -g3 -std=c++17
+CXXFLAGS := -I$(ARCH_INCLUDE) -I$(INCLUDE) -Wall -g3 -std=c++20
 CXX = $(addprefix $(PREFIX),g++)
 STRIP = $(addprefix $(PREFIX),strip)
 
@@ -31,5 +29,3 @@ clean:
 
 fullclean: clean
 	rm -rf $(ARCH_INCLUDE)
-
-pch: $(PCH)

@@ -1,3 +1,3 @@
-CXXFLAGS = -static
-
 include ../../Makefile.pref
+
+CXXFLAGS += -static
