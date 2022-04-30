@@ -1,5 +1,6 @@
 /**/main*
 !src/main.cpp
+!include/main.hpp
 *.vscode
 *.elf
 *.erl
