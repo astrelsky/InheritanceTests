@@ -2,6 +2,7 @@
 #define PCH_HPP
 
 #include "main.hpp"
+#include "serializable.hpp"
 #include <cstddef>
 #include <iostream>
 #include <string>

@@ -186,7 +186,7 @@ static class Printer : public Printable, public Serializable {
     void print() const override;
 
 #if SERIALIZE
-    void serialize(boost::property_tree::ptree &tree) const;
+    void serialize(boost::property_tree::ptree &tree) const override;
 #endif
 } printer;
 

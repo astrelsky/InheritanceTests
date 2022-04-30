@@ -10,6 +10,9 @@ ifndef HAS_ARCH_COMPILER
 all:
 	$(NOOP)
 
+serializable:
+	$(NOOP)
+
 $(PCH) :
 	$(NOOP)
 
@@ -17,6 +20,10 @@ else
 all: $(PCH)
 	+$(MAKE) -C dynamic
 	+$(MAKE) -C static
+
+serializable: $(PCH)
+	+$(MAKE) -C dynamic serializable
+	+$(MAKE) -C static serializable
 
 $(PCH) : $(INCLUDE)/$(PCH_SRC) | $(ARCH_INCLUDE)
 	$(CXX) $(CXXFLAGS) -x c++-header $< -o $@

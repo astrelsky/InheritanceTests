@@ -22,7 +22,7 @@ $(OBJ_DIR):
 	mkdir -p $@
 
 %.o $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp | $(OBJ_DIR) $(PCH)
-	$(CXX) $(CXXFLAGS) -include-pch pch.gch -c $< -o $@
+	$(CXX) $(CXXFLAGS) -include pch.hpp -c $< -o $@
 
 $(EXEC): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
