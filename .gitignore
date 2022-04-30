@@ -1,4 +1,5 @@
 /**/main*
+!src/main.cpp
 *.vscode
 *.elf
 *.erl
@@ -9,3 +10,4 @@
 *.gch
 *.json
 vs/
+.clangd

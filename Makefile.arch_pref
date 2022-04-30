@@ -2,16 +2,26 @@ INCLUDE = ../include
 ARCH_INCLUDE = include
 PCH_SRC = pch.hpp
 PCH = $(ARCH_INCLUDE)/$(PCH_SRC).gch
-CXXFLAGS := -I$(ARCH_INCLUDE) -I$(INCLUDE) -Wall -gdwarf-3 -g3 -std=c++17
 CXX = $(addprefix $(PREFIX),g++)
 
+HAS_ARCH_COMPILER := $(shell which $(CXX) 2> /dev/null)
+
+ifndef HAS_ARCH_COMPILER
+all:
+	$(NOOP)
+
+$(PCH) :
+	$(NOOP)
+
+else
 all: $(PCH)
 	+$(MAKE) -C dynamic
 	+$(MAKE) -C static
 
-serializable: $(PCH)
-	+$(MAKE) -C dynamic serializable
-	+$(MAKE) -C static serializable
+$(PCH) : $(INCLUDE)/$(PCH_SRC) | $(ARCH_INCLUDE)
+	$(CXX) $(CXXFLAGS) -x c++-header $< -o $@
+
+endif
 
 clean:
 	$(MAKE) -C dynamic clean
@@ -22,9 +32,6 @@ fullclean: clean
 
 $(ARCH_INCLUDE):
 	mkdir -p $@
-
-$(PCH) : $(INCLUDE)/$(PCH_SRC) | $(ARCH_INCLUDE)
-	$(CXX) $(CXXFLAGS) -x c++-header $< -o $@
 
 pch: $(PCH)
 
